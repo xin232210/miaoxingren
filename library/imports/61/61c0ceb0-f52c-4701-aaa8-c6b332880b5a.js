@@ -38,12 +38,12 @@ cc.Class({
     this.hitCounter = this.hitCount;
     this.lifeTimer = -1;
 
-    if (this.canReturn) {
+    if (this.canReturn && this.scene) {
       this.returnTimer = this.scene.setTimeout(this.doReturnLogic.bind(this), this.life);
       this.life += this.life;
     }
 
-    if (this.life > 0) {
+    if (this.life > 0 && this.scene) {
       this.lifeTimer = this.scene.setTimeout(this.onLifeEnd.bind(this), this.life);
     }
   },
@@ -63,7 +63,7 @@ cc.Class({
     this.node.parent = null;
   },
   onMoveEnded: function onMoveEnded() {
-    if (-1 != this.lifeTimer) {
+    if (-1 != this.lifeTimer && this.scene) {
       this.scene.clearTimeout(this.lifeTimer);
       this.lifeTimer = -1;
     }
@@ -71,7 +71,7 @@ cc.Class({
     this.node.parent = null;
   },
   update: function update() {
-    if (!this.scene.timePaused && this.moveDelta) {
+    if (this.scene && !this.scene.timePaused && this.moveDelta) {
       var t = this.moveDelta.mul(cc.director.getScheduler().getTimeScale());
       this.node.position = this.node.position.add(t);
     }
@@ -82,16 +82,16 @@ cc.Class({
 
     if (this.hitCounter <= 0) {
       t.enabled = !1;
-      -1 != this.lifeTimer && (this.scene.clearTimeout(this.lifeTimer), this.lifeTimer = -1);
+      -1 != this.lifeTimer && this.scene && (this.scene.clearTimeout(this.lifeTimer), this.lifeTimer = -1);
 
       if (this.dieKeepFrame > 0) {
-        -1 == this.dieTimer && (this.dieTimer = this.scene.setTimeout(function () {
+        -1 == this.dieTimer && this.scene && (this.dieTimer = this.scene.setTimeout(function () {
           e.node.parent = null;
         }, 1e3 * this.dieKeepFrame / 60));
       } else {
         this.node.parent = null;
       }
-    } else if (this.hitChangeAngle) {
+    } else if (this.hitChangeAngle && this.scene) {
       var i = this.scene.chooseEnemyByBullet(this);
 
       if (i) {

@@ -526,6 +526,7 @@ cc.Class({
     update: function () {
         if (
             this.hero &&
+            this.hero.scene &&
             !this.hero.scene.timePaused &&
             !this.hero.scene.hasEnded &&
             !(this.hasDie || this.hero.hp <= 0)

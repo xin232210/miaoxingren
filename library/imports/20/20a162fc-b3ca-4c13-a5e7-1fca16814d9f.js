@@ -259,7 +259,7 @@ cc.Class({
     }
   },
   update: function update(t) {
-    if (!this.scene.timePaused && !(this.scene.hasEnded || this.hp <= 0)) {
+    if (this.scene && !this.scene.timePaused && !(this.scene.hasEnded || this.hp <= 0)) {
       var e = t * cc.director.getScheduler().getTimeScale() * this.spine.timeScale;
       var i = cc.pvz.runtimeData.getBuffValue(4);
 

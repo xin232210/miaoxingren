@@ -15,16 +15,20 @@ cc.Class({
     landMineNode: cc.Node
   },
   onLoad: function onLoad() {
-    if (this.zd) {
-      this.zd.node.active = !1;
-    }
+    try {
+      if (this.zd && this.zd.node) {
+        this.zd.node.active = !1;
+      }
 
-    if (this.zd2) {
-      this.zd2.node.active = !1;
-    }
+      if (this.zd2 && this.zd2.node) {
+        this.zd2.node.active = !1;
+      }
 
-    if (this.landMineNode) {
-      this.landMineNode.active = !1;
+      if (this.landMineNode) {
+        this.landMineNode.active = !1;
+      }
+    } catch (e) {
+      console.error("[Hero onLoad] 初始化组件失败:", e);
     } // 启用update方法以支持移动逻辑
 
 
@@ -193,21 +197,24 @@ cc.Class({
 
     switch (this.info.id) {
       case 3:
-        this.playAttAndDo(function () {
-          var t = Math.floor(i.getAtk(i.item.lv));
-
-          if (i.checkBuff(302)) {
-            t += 1;
+        // 3号英雄改为普通攻击型
+        var r = e || this.scene.chooseEnemy(this, this.atkRR);
+        return !!r && (this.pushLvAndAtk(t), !this.isAttacking && (this.isAttacking = !0, this.playAttAndDo(function () {
+          if (r.isValid) {
+            i.isAttacking = !1;
+            i.checkToShoot(r);
           }
-
-          if (i.checkBuff(304) && Math.random() < 0.25) {
-            t *= 2;
+        }, function () {
+          if (i.item.bulletCount <= 0) {
+            cc.tween(i.IKBone).to(0.064, {
+              x: 150,
+              y: 50
+            }).start();
           }
-
-          cc.pvz.runtimeData.addMoney(t);
-          i.scene.showBuffEffect("money", i.node.position, i.scene.getMoneyWPos());
-        });
-        return !0;
+        }), this.IKBone || (this.IKBone = this.spine.findBone("IK")), cc.tween(this.IKBone).to(0.064, {
+          x: (r.node.x - this.node.x) / 0.76,
+          y: (r.node.y + r.centerY - this.node.y) / 0.76
+        }).start(), !0));
 
       case 6:
         this.playAttAndDo(function () {
@@ -790,7 +797,7 @@ cc.Class({
       return;
     }
 
-    if (!this.scene.timePaused && !(this.scene.hasEnded || this.hp <= 0 || this.hasDie)) {
+    if (this.scene && !this.scene.timePaused && !(this.scene.hasEnded || this.hp <= 0 || this.hasDie)) {
       var e = t * cc.director.getScheduler().getTimeScale(); // 每秒只打印一次日志，避免刷屏
 
       if (!this.lastLogTime) {

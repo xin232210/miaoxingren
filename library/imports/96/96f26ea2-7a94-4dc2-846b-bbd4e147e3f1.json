@@ -86,34 +86,34 @@
     },
     {
       "id": 301,
-      "quality": 2,
+      "quality": 3,
       "icon": 301,
-      "desc": "<outline color=black width=3>蝙蝠钞能力速度<color=#7EFF6B>+20%</outline>",
-      "lockdesc": "<color=#4EFF60>等级1解锁：<color=#DADADA>蝙蝠钞能力速度+20%</outline>",
+      "desc": "<outline color=black width=3>蝙蝠卡皮伤害<color=#7EFF6B>+25%</outline>",
+      "lockdesc": "<color=#4EFF60>等级1解锁：<color=#DADADA>蝙蝠卡皮伤害+25%</outline>",
       "lock": 1
     },
     {
       "id": 302,
-      "quality": 3,
+      "quality": 2,
       "icon": 302,
-      "desc": "<outline color=black width=3>蝙蝠钞能力每次获得钱币<color=#7EFF6B>+1</outline>",
-      "lockdesc": "<color=#4EFF60>等级2解锁：<color=#DADADA>蝙蝠钞能力每次获得钱币+1</outline>",
+      "desc": "<outline color=black width=3>蝙蝠卡皮暴击率<color=#7EFF6B>+25%</outline>",
+      "lockdesc": "<color=#4EFF60>等级2解锁：<color=#DADADA>蝙蝠卡皮暴击率+25%</outline>",
       "lock": 2
     },
     {
       "id": 303,
       "quality": 3,
       "icon": 303,
-      "desc": "<outline color=black width=3>蝙蝠钞能力使背包商店刷新价格<color=#7EFF6B>-20%</outline>",
-      "lockdesc": "<color=#4EFF60>等级3解锁：<color=#DADADA>蝙蝠钞能力使背包商店刷新价格-20%</outline>",
+      "desc": "<outline color=black width=3>蝙蝠卡皮暴击伤害<color=#7EFF6B>+50%</outline>",
+      "lockdesc": "<color=#4EFF60>等级3解锁：<color=#DADADA>蝙蝠卡皮暴击伤害+50%</outline>",
       "lock": 3
     },
     {
       "id": 304,
       "quality": 4,
       "icon": 304,
-      "desc": "<outline color=black width=3>蝙蝠钞能力有<color=#7EFF6B>25%</c>几率获得<color=#7EFF6B>200%</c>钱币</outline>",
-      "lockdesc": "<color=#4EFF60>等级4解锁：<color=#DADADA>蝙蝠钞能力有25%几率获得200%钱币</outline>",
+      "desc": "<outline color=black width=3>蝙蝠卡皮命中时会<color=#7EFF6B>击退</c>目标</outline>",
+      "lockdesc": "<color=#4EFF60>等级4解锁：<color=#DADADA>蝙蝠卡皮命中时会击退目标</outline>",
       "lock": 4
     },
     {

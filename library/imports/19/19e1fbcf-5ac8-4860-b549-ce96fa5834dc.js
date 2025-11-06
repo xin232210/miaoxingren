@@ -560,7 +560,7 @@ cc.Class({
     }
   },
   update: function update() {
-    if (this.hero && !this.hero.scene.timePaused && !this.hero.scene.hasEnded && !(this.hasDie || this.hero.hp <= 0)) {
+    if (this.hero && this.hero.scene && !this.hero.scene.timePaused && !this.hero.scene.hasEnded && !(this.hasDie || this.hero.hp <= 0)) {
       var t = this.hero.scene.isAngerPressed;
 
       if (this.inCoolDown) {

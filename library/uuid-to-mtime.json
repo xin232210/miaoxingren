@@ -1459,11 +1459,6 @@
     "meta": 1762177707649,
     "relativePath": "actors/plant/plant2.prefab"
   },
-  "1c1aa97f-02e9-4d96-bd2d-23fa1df85819": {
-    "asset": 1762177449302,
-    "meta": 1762177707650,
-    "relativePath": "actors/plant/plant3.prefab"
-  },
   "3d363458-9555-4ccd-b5c5-18469bfb6bd5": {
     "asset": 1762177449302,
     "meta": 1762177707650,
@@ -1533,11 +1528,6 @@
     "asset": 1762177449307,
     "meta": 1762177707689,
     "relativePath": "game/scripts/BuffItem.js"
-  },
-  "61c0ceb0-f52c-4701-aaa8-c6b332880b5a": {
-    "asset": 1762177449307,
-    "meta": 1762177707696,
-    "relativePath": "game/scripts/Bullet.js"
   },
   "741ce402-41a9-45ec-8e2a-25110501b863": {
     "asset": 1762177449307,
@@ -1613,11 +1603,6 @@
     "asset": 1762177449310,
     "meta": 1762177707852,
     "relativePath": "game/scripts/UIStashTip.js"
-  },
-  "487dd4f5-99b4-4ae2-abb1-c98a925cc244": {
-    "asset": 1762177449310,
-    "meta": 1762177707905,
-    "relativePath": "game/scripts/game1.js"
   },
   "2ceebb4f-82a4-4308-b54b-256462f2a6cd": {
     "asset": 1762177449313,
@@ -6154,11 +6139,6 @@
     "meta": 1762181563720,
     "relativePath": "main/ConfigBattle.json"
   },
-  "20a162fc-b3ca-4c13-a5e7-1fca16814d9f": {
-    "asset": 1762181615774,
-    "meta": 1762181690743,
-    "relativePath": "game/scripts/Enemy.js"
-  },
   "4b521cc2-c355-4d7e-95fa-ed056c766516": {
     "asset": 1762268462145,
     "meta": 1762268496318,
@@ -7964,11 +7944,6 @@
     "meta": 1762270780430,
     "relativePath": "rank/scripts/UIRankList.js"
   },
-  "0be02287-c410-4108-af4f-310af058f2ba": {
-    "asset": 1762271452182,
-    "meta": 1762432688713,
-    "relativePath": "game/config/GameBuff.json"
-  },
   "a31b587a-2f3e-4a0f-9f7f-06b4507c244f": {
     "asset": 1762271546075,
     "meta": 1762432688714,
@@ -8013,11 +7988,6 @@
     "asset": 1762271613553,
     "meta": 1762432688716,
     "relativePath": "main/PlantLevelUP.json"
-  },
-  "96f26ea2-7a94-4dc2-846b-bbd4e147e3f1": {
-    "asset": 1762271624755,
-    "meta": 1762432688718,
-    "relativePath": "main/PlantsSkill.json"
   },
   "c6c002c4-4fe6-4d0e-a8f4-cbbd104d0a1e": {
     "asset": 1762271649861,
@@ -8064,11 +8034,6 @@
     "meta": 1762432688719,
     "relativePath": "main/Weekmissionbox.json"
   },
-  "e73208d7-6a17-4baa-8a09-9ea35dcd7943": {
-    "asset": 1762433231075,
-    "meta": 1762433232689,
-    "relativePath": "main/PlantsInfo.json"
-  },
   "422a75e5-9dfb-4d30-937e-b4d10a780e80": {
     "asset": 1762439487090,
     "meta": 1762439734463,
@@ -8109,19 +8074,54 @@
     "meta": 1762445213027,
     "relativePath": "game/scripts/game.js"
   },
-  "c10aa629-e2ff-4941-ae4e-d18c6902dfc2": {
-    "asset": 1762445210299,
-    "meta": 1762445213082,
-    "relativePath": "game/scripts/Hero.js"
-  },
-  "19e1fbcf-5ac8-4860-b549-ce96fa5834dc": {
-    "asset": 1762445210437,
-    "meta": 1762445213130,
-    "relativePath": "game/scripts/Item.js"
-  },
   "ddaa9413-31de-4378-aa27-ec3a6daf15e5": {
     "asset": 1762445210605,
     "meta": 1762445213137,
     "relativePath": "game/scripts/UIGameStastics.js"
+  },
+  "487dd4f5-99b4-4ae2-abb1-c98a925cc244": {
+    "asset": 1762447480916,
+    "meta": 1762447507509,
+    "relativePath": "game/scripts/game1.js"
+  },
+  "1c1aa97f-02e9-4d96-bd2d-23fa1df85819": {
+    "asset": 1762447030053,
+    "meta": 1762447507576,
+    "relativePath": "actors/plant/plant3.prefab"
+  },
+  "0be02287-c410-4108-af4f-310af058f2ba": {
+    "asset": 1762447474295,
+    "meta": 1762447507577,
+    "relativePath": "game/config/GameBuff.json"
+  },
+  "e73208d7-6a17-4baa-8a09-9ea35dcd7943": {
+    "asset": 1762447319795,
+    "meta": 1762447507577,
+    "relativePath": "main/PlantsInfo.json"
+  },
+  "96f26ea2-7a94-4dc2-846b-bbd4e147e3f1": {
+    "asset": 1762447391592,
+    "meta": 1762447507578,
+    "relativePath": "main/PlantsSkill.json"
+  },
+  "61c0ceb0-f52c-4701-aaa8-c6b332880b5a": {
+    "asset": 1762447654163,
+    "meta": 1762447779957,
+    "relativePath": "game/scripts/Bullet.js"
+  },
+  "20a162fc-b3ca-4c13-a5e7-1fca16814d9f": {
+    "asset": 1762447736929,
+    "meta": 1762447780009,
+    "relativePath": "game/scripts/Enemy.js"
+  },
+  "19e1fbcf-5ac8-4860-b549-ce96fa5834dc": {
+    "asset": 1762447741157,
+    "meta": 1762447780076,
+    "relativePath": "game/scripts/Item.js"
+  },
+  "c10aa629-e2ff-4941-ae4e-d18c6902dfc2": {
+    "asset": 1762447889051,
+    "meta": 1762447954786,
+    "relativePath": "game/scripts/Hero.js"
   }
 }

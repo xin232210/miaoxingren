@@ -354,7 +354,7 @@ cc.Class({
             [
                 {
                     hideFinger: !0,
-                    tip: "战斗中，【蝙蝠卡皮】每隔一段时间会产出更多钱币",
+                    tip: "战斗中，【蝙蝠卡皮】会发射子弹攻击敌人",
                     focus: cc.find("gezi", t),
                     y: -400
                 },
