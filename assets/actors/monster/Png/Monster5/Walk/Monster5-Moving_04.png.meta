@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4326c9f8-ba1d-402a-8669-84a4f7b6ce3e",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 450,
+  "height": 450,
+  "platformSettings": {},
+  "subMetas": {
+    "Monster5-Moving_04": {
+      "ver": "1.0.6",
+      "uuid": "11dbcd93-278a-4ca4-885a-6f589e7cb306",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4326c9f8-ba1d-402a-8669-84a4f7b6ce3e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -16,
+      "offsetY": -66,
+      "trimX": 91,
+      "trimY": 176,
+      "width": 236,
+      "height": 230,
+      "rawWidth": 450,
+      "rawHeight": 450,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

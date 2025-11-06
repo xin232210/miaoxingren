@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "dun",
+    "texture": "6a15659e-1feb-4bc3-9762-b608a93edada",
+    "atlas": "",
+    "rect": [
+      6,
+      4,
+      54,
+      55
+    ],
+    "offset": [
+      1,
+      -0.5
+    ],
+    "originalSize": [
+      64,
+      62
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

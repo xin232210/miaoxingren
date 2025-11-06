@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "hd_btn3",
+    "texture": "10a9a093-6066-48d1-bf92-4ec41f4da63b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      100,
+      90
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      100,
+      90
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

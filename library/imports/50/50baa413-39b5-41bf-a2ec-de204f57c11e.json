@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "defenceMap2_n1",
+    "texture": "12adbb18-509d-43e1-97ed-be1ccd624445",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      900,
+      79
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      900,
+      79
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

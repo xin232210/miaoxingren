@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "4895dbe1-989f-46e9-b447-feba6d81569d",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 441,
+  "height": 266,
+  "platformSettings": {},
+  "subMetas": {
+    "Monster4-Moving and idle_06": {
+      "ver": "1.0.6",
+      "uuid": "a8c49547-1afd-4a0b-aeef-7daa0d456c0d",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "4895dbe1-989f-46e9-b447-feba6d81569d",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -8.5,
+      "offsetY": 6.5,
+      "trimX": 9,
+      "trimY": 68,
+      "width": 406,
+      "height": 117,
+      "rawWidth": 441,
+      "rawHeight": 266,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

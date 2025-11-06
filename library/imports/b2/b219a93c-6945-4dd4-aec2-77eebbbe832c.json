@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Confuse Fx5",
+    "texture": "3c029e6f-acf8-4979-9049-43380b826f22",
+    "atlas": "",
+    "rect": [
+      12,
+      16,
+      196,
+      34
+    ],
+    "offset": [
+      1.5,
+      -4
+    ],
+    "originalSize": [
+      217,
+      58
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

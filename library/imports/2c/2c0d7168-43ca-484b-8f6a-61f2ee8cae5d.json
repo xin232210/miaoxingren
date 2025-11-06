@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "bardi",
+    "texture": "56aa3683-cf2c-4638-b693-af19ab288a4c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      81,
+      15
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      81,
+      15
+    ],
+    "capInsets": [
+      20,
+      7,
+      23,
+      7
+    ]
+  }
+}

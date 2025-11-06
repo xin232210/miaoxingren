@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "arge8",
+    "texture": "288070f9-09f3-4f66-8f3d-224ead3fb64c",
+    "atlas": "",
+    "rect": [
+      1,
+      1,
+      123,
+      158
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      125,
+      160
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

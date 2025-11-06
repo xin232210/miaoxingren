@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "load",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nload.png\nsize: 338,206\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nduihuakuang\n  rotate: true\n  xy: 157, 70\n  size: 134, 174\n  orig: 134, 174\n  offset: 0, 0\n  index: -1\nkpbl_arm_L1\n  rotate: true\n  xy: 215, 4\n  size: 64, 57\n  orig: 64, 57\n  offset: 0, 0\n  index: -1\nkpbl_arm_R1\n  rotate: false\n  xy: 157, 2\n  size: 56, 66\n  orig: 56, 66\n  offset: 0, 0\n  index: -1\nkpbl_body1\n  rotate: false\n  xy: 2, 17\n  size: 153, 187\n  orig: 153, 187\n  offset: 0, 0\n  index: -1\nkpbl_eye\n  rotate: false\n  xy: 274, 4\n  size: 32, 19\n  orig: 32, 19\n  offset: 0, 0\n  index: -1\nkpbl_leg_L1\n  rotate: true\n  xy: 274, 25\n  size: 43, 31\n  orig: 43, 31\n  offset: 0, 0\n  index: -1\nkpbl_leg_R1\n  rotate: true\n  xy: 307, 26\n  size: 42, 29\n  orig: 42, 29\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "9f74a835-e84f-4e06-9674-1c27bb914b61"
+    }
+  ],
+  "textureNames": [
+    "load.png"
+  ],
+  "scale": 1
+}

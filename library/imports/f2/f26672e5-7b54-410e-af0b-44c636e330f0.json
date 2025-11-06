@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Monster1-Idle_18",
+    "texture": "01e80cb1-37ce-4431-93db-6bb1fa237274",
+    "atlas": "",
+    "rect": [
+      91,
+      171,
+      250,
+      213
+    ],
+    "offset": [
+      -9,
+      -52.5
+    ],
+    "originalSize": [
+      450,
+      450
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

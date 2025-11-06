@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "e5",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\r\ne5.png\r\nsize: 283,77\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nmg_body1\r\n  rotate: true\r\n  xy: 226, 5\r\n  size: 71, 56\r\n  orig: 71, 56\r\n  offset: 0, 0\r\n  index: -1\r\nmg_eye\r\n  rotate: false\r\n  xy: 104, 1\r\n  size: 34, 21\r\n  orig: 34, 21\r\n  offset: 0, 0\r\n  index: -1\r\nmg_herad1\r\n  rotate: false\r\n  xy: 1, 5\r\n  size: 101, 71\r\n  orig: 101, 71\r\n  offset: 0, 0\r\n  index: -1\r\nmg_leg_L1\r\n  rotate: false\r\n  xy: 140, 1\r\n  size: 30, 21\r\n  orig: 30, 21\r\n  offset: 0, 0\r\n  index: -1\r\nmg_leg_R1\r\n  rotate: false\r\n  xy: 172, 1\r\n  size: 30, 21\r\n  orig: 30, 21\r\n  offset: 0, 0\r\n  index: -1\r\nyy\r\n  rotate: false\r\n  xy: 104, 24\r\n  size: 120, 52\r\n  orig: 120, 52\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "textures": [
+    {
+      "__uuid__": "b123920e-23e4-4a3f-aea6-6168139c9374"
+    }
+  ],
+  "textureNames": [
+    "e5.png"
+  ],
+  "scale": 1
+}

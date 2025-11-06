@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "zwdi2",
+    "texture": "d889a345-d193-4c3f-bda2-691b053dea1c",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      63,
+      39
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      63,
+      39
+    ],
+    "capInsets": [
+      18,
+      0,
+      15,
+      0
+    ]
+  }
+}

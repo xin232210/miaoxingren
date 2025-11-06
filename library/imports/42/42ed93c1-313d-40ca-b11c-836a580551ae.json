@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "e6",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\r\ne6.png\r\nsize: 649,105\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nslm_body1\r\n  rotate: true\r\n  xy: 374, 8\r\n  size: 96, 84\r\n  orig: 96, 84\r\n  offset: 0, 0\r\n  index: -1\r\nslm_eye\r\n  rotate: true\r\n  xy: 460, 14\r\n  size: 36, 28\r\n  orig: 36, 28\r\n  offset: 0, 0\r\n  index: -1\r\nyc2_bj1\r\n  rotate: false\r\n  xy: 287, 7\r\n  size: 85, 97\r\n  orig: 85, 97\r\n  offset: 0, 0\r\n  index: -1\r\nyc2_bj2\r\n  rotate: false\r\n  xy: 193, 5\r\n  size: 92, 99\r\n  orig: 92, 99\r\n  offset: 0, 0\r\n  index: -1\r\nyc2_bj3\r\n  rotate: false\r\n  xy: 100, 2\r\n  size: 91, 102\r\n  orig: 91, 102\r\n  offset: 0, 0\r\n  index: -1\r\nyc2_bj4\r\n  rotate: false\r\n  xy: 1, 1\r\n  size: 97, 103\r\n  orig: 97, 103\r\n  offset: 0, 0\r\n  index: -1\r\nyc2_zd\r\n  rotate: false\r\n  xy: 582, 38\r\n  size: 66, 66\r\n  orig: 66, 66\r\n  offset: 0, 0\r\n  index: -1\r\nyy\r\n  rotate: false\r\n  xy: 460, 52\r\n  size: 120, 52\r\n  orig: 120, 52\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "textures": [
+    {
+      "__uuid__": "4e0eb72c-762c-4a1f-893d-8521a8aa47cf"
+    }
+  ],
+  "textureNames": [
+    "e6.png"
+  ],
+  "scale": 1
+}

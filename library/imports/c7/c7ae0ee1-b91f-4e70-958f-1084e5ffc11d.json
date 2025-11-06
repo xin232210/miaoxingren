@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Confuse Fx1",
+    "texture": "1d71109a-0a81-40a9-9670-b8de69b8f74f",
+    "atlas": "",
+    "rect": [
+      10,
+      7,
+      97,
+      49
+    ],
+    "offset": [
+      -1.5,
+      1
+    ],
+    "originalSize": [
+      120,
+      65
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

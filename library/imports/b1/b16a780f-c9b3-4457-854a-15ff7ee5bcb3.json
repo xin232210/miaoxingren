@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "jdbar3",
+    "texture": "3ccf3b3f-e7bd-454d-89c9-2c559fd56ce9",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      62,
+      30
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      62,
+      30
+    ],
+    "capInsets": [
+      21,
+      0,
+      22,
+      0
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "libao",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nlibao.png\nsize: 417,196\nformat: RGBA8888\nfilter: Nearest,Nearest\nrepeat: none\nBX\n  rotate: false\n  xy: 318, 0\n  size: 98, 94\n  orig: 98, 94\n  offset: 0, 0\n  index: -1\nBX2\n  rotate: true\n  xy: 318, 96\n  size: 100, 99\n  orig: 100, 99\n  offset: 0, 0\n  index: -1\nBX_G\n  rotate: true\n  xy: 206, 82\n  size: 114, 110\n  orig: 114, 110\n  offset: 0, 0\n  index: -1\nG\n  rotate: false\n  xy: 0, 0\n  size: 204, 196\n  orig: 204, 196\n  offset: 0, 0\n  index: -1\nlq\n  rotate: false\n  xy: 206, 3\n  size: 59, 77\n  orig: 59, 77\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "5e0615f6-23f2-42a4-b616-3d9b8ca60ba9"
+    }
+  ],
+  "textureNames": [
+    "libao.png"
+  ],
+  "scale": 1
+}

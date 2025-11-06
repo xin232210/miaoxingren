@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "shopbox",
+    "texture": "626cb5da-126e-46ea-afa8-cc3b93ec3b8b",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      2032,
+      723
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      2032,
+      723
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

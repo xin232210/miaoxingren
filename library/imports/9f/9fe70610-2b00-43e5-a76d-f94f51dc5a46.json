@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "hero6",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nhero6.png\nsize: 298,269\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nddz_arm_L_1\n  rotate: false\n  xy: 199, 16\n  size: 30, 33\n  orig: 30, 33\n  offset: 0, 0\n  index: -1\nddz_arm_L_2\n  rotate: false\n  xy: 231, 16\n  size: 30, 33\n  orig: 30, 33\n  offset: 0, 0\n  index: -1\nddz_arm_R_1\n  rotate: true\n  xy: 123, 41\n  size: 29, 34\n  orig: 29, 34\n  offset: 0, 0\n  index: -1\nddz_arm_R_2\n  rotate: false\n  xy: 260, 54\n  size: 29, 34\n  orig: 29, 34\n  offset: 0, 0\n  index: -1\nddz_body_1\n  rotate: false\n  xy: 1, 171\n  size: 77, 97\n  orig: 77, 97\n  offset: 0, 0\n  index: -1\nddz_body_2\n  rotate: false\n  xy: 1, 72\n  size: 77, 97\n  orig: 77, 97\n  offset: 0, 0\n  index: -1\nddz_body_3\n  rotate: false\n  xy: 80, 171\n  size: 77, 97\n  orig: 77, 97\n  offset: 0, 0\n  index: -1\nddz_body_4\n  rotate: false\n  xy: 80, 72\n  size: 77, 97\n  orig: 77, 97\n  offset: 0, 0\n  index: -1\nddz_body_5\n  rotate: false\n  xy: 159, 171\n  size: 77, 97\n  orig: 77, 97\n  offset: 0, 0\n  index: -1\nddz_eye_1\n  rotate: true\n  xy: 220, 152\n  size: 17, 10\n  orig: 17, 10\n  offset: 0, 0\n  index: -1\nddz_head2_2\n  rotate: false\n  xy: 263, 23\n  size: 24, 29\n  orig: 24, 29\n  offset: 0, 0\n  index: -1\nddz_head2_3\n  rotate: false\n  xy: 162, 16\n  size: 35, 33\n  orig: 35, 33\n  offset: 0, 0\n  index: -1\nddz_head2_4\n  rotate: false\n  xy: 220, 51\n  size: 38, 37\n  orig: 38, 37\n  offset: 0, 0\n  index: -1\nddz_head2_5\n  rotate: true\n  xy: 123, 1\n  size: 38, 37\n  orig: 38, 37\n  offset: 0, 0\n  index: -1\nddz_leg_L_1\n  rotate: true\n  xy: 281, 125\n  size: 23, 16\n  orig: 23, 16\n  offset: 0, 0\n  index: -1\nddz_leg_R_1\n  rotate: false\n  xy: 1, 1\n  size: 22, 15\n  orig: 22, 15\n  offset: 0, 0\n  index: -1\nddz_wq_1\n  rotate: false\n  xy: 159, 111\n  size: 59, 58\n  orig: 59, 58\n  offset: 0, 0\n  index: -1\nddz_wq_2\n  rotate: false\n  xy: 238, 210\n  size: 59, 58\n  orig: 59, 58\n  offset: 0, 0\n  index: -1\nddz_wq_3\n  rotate: false\n  xy: 159, 51\n  size: 59, 58\n  orig: 59, 58\n  offset: 0, 0\n  index: -1\nddz_wq_4\n  rotate: false\n  xy: 238, 150\n  size: 59, 58\n  orig: 59, 58\n  offset: 0, 0\n  index: -1\nddz_wq_5\n  rotate: false\n  xy: 220, 90\n  size: 59, 58\n  orig: 59, 58\n  offset: 0, 0\n  index: -1\nyy\n  rotate: false\n  xy: 1, 18\n  size: 120, 52\n  orig: 120, 52\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "cb9f76f9-9bc0-4af8-aa98-070ade56a7f9"
+    }
+  ],
+  "textureNames": [
+    "hero6.png"
+  ],
+  "scale": 1
+}

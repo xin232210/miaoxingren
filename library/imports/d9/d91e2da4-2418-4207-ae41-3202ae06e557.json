@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "DeadFx_14",
+    "texture": "29249149-9d8a-48a4-9ed9-b4cee8bbb8c7",
+    "atlas": "",
+    "rect": [
+      69,
+      41,
+      319,
+      273
+    ],
+    "offset": [
+      4,
+      10.5
+    ],
+    "originalSize": [
+      449,
+      376
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Hand_B2",
+    "texture": "e2cebb73-dfad-4a7d-ba1c-e1bb663e218d",
+    "atlas": "",
+    "rect": [
+      6,
+      3,
+      59,
+      52
+    ],
+    "offset": [
+      -0.5,
+      1
+    ],
+    "originalSize": [
+      72,
+      60
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Monster3-Moving_00",
+    "texture": "cab54f61-e598-4b73-8508-c0c9b92e0343",
+    "atlas": "",
+    "rect": [
+      92,
+      226,
+      241,
+      195
+    ],
+    "offset": [
+      -12.5,
+      -98.5
+    ],
+    "originalSize": [
+      450,
+      450
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "HandF",
+    "texture": "b826e7aa-4068-49fd-badd-0208229493fc",
+    "atlas": "",
+    "rect": [
+      10,
+      4,
+      91,
+      56
+    ],
+    "offset": [
+      0,
+      1.5
+    ],
+    "originalSize": [
+      111,
+      67
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "shop24",
+    "texture": "e40f5891-feba-4d2a-816d-5f355ec23747",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      46,
+      33
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      46,
+      33
+    ],
+    "capInsets": [
+      13,
+      12,
+      15,
+      11
+    ]
+  }
+}

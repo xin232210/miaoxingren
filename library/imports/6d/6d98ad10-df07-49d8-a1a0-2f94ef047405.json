@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "S_DieFX",
+    "texture": "75a76c29-5fdd-40ae-92c2-29c85d4c1ada",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      170,
+      36
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      170,
+      36
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "tlbuy1",
+    "texture": "aaf6fa21-927d-4377-8aac-45f03da93fce",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      266,
+      399
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      266,
+      399
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

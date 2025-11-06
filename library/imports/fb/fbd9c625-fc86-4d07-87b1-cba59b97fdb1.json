@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "shouzhi",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nshouzhi.png\nsize: 505,149\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nG1\n  rotate: false\n  xy: 142, 0\n  size: 104, 104\n  orig: 104, 104\n  offset: 0, 0\n  index: -1\nG2\n  rotate: false\n  xy: 0, 9\n  size: 140, 140\n  orig: 140, 140\n  offset: 0, 0\n  index: -1\nX\n  rotate: false\n  xy: 248, 12\n  size: 92, 92\n  orig: 92, 92\n  offset: 0, 0\n  index: -1\nshouzhi_1\n  rotate: false\n  xy: 342, 4\n  size: 77, 100\n  orig: 77, 100\n  offset: 0, 0\n  index: -1\nshouzhi_2\n  rotate: false\n  xy: 421, 15\n  size: 84, 89\n  orig: 84, 89\n  offset: 0, 0\n  index: -1\nzi\n  rotate: false\n  xy: 142, 106\n  size: 297, 43\n  orig: 297, 43\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "941d7229-207c-4ac2-a952-74b6133ed769"
+    }
+  ],
+  "textureNames": [
+    "shouzhi.png"
+  ],
+  "scale": 1
+}

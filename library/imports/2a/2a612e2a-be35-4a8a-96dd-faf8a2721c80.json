@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "LegB",
+    "texture": "6f9d7f85-ac77-4b50-a72f-16d83163b32f",
+    "atlas": "",
+    "rect": [
+      10,
+      9,
+      70,
+      44
+    ],
+    "offset": [
+      0.5,
+      -1
+    ],
+    "originalSize": [
+      89,
+      60
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

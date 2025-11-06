@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Monster4-Moving and idle_08",
+    "texture": "fc845aab-1eae-4edb-bca1-c90c0ff9fc33",
+    "atlas": "",
+    "rect": [
+      28,
+      69,
+      378,
+      144
+    ],
+    "offset": [
+      -3.5,
+      -8
+    ],
+    "originalSize": [
+      441,
+      266
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "line1",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\nline1.png\nsize: 236,202\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nG\n  rotate: false\n  xy: 1, 1\n  size: 200, 200\n  orig: 200, 200\n  offset: 0, 0\n  index: -1\nxian\n  rotate: false\n  xy: 203, 89\n  size: 32, 112\n  orig: 32, 112\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "fe9c2b07-0530-4a22-92de-8a4be5c8fdd5"
+    }
+  ],
+  "textureNames": [
+    "line1.png"
+  ],
+  "scale": 1
+}

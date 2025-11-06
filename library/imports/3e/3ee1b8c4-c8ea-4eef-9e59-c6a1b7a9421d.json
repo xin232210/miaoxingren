@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "paihang",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\npaihang.png\nsize: 681,558\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\ndi\n  rotate: false\n  xy: 1, 185\n  size: 354, 372\n  orig: 354, 372\n  offset: 0, 0\n  index: -1\nhei\n  rotate: false\n  xy: 187, 79\n  size: 10, 10\n  orig: 10, 10\n  offset: 0, 0\n  index: -1\nhz\n  rotate: false\n  xy: 1, 1\n  size: 184, 182\n  orig: 184, 182\n  offset: 0, 0\n  index: -1\njt\n  rotate: false\n  xy: 187, 91\n  size: 111, 92\n  orig: 111, 92\n  offset: 0, 0\n  index: -1\nz1\n  rotate: true\n  xy: 530, 102\n  size: 449, 150\n  orig: 449, 150\n  offset: 0, 0\n  index: -1\nzi\n  rotate: true\n  xy: 357, 102\n  size: 455, 171\n  orig: 455, 171\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "8b6b9e5e-9115-42a9-9ae5-ce0463b4a633"
+    }
+  ],
+  "textureNames": [
+    "paihang.png"
+  ],
+  "scale": 1
+}

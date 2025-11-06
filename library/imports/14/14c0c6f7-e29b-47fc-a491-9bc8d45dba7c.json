@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "e1",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\r\ne1.png\r\nsize: 142,137\r\nformat: RGBA8888\r\nfilter: Linear,Linear\r\nrepeat: none\r\nxg1_arm_L1\r\n  rotate: true\r\n  xy: 123, 109\r\n  size: 27, 18\r\n  orig: 27, 18\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_arm_L2\r\n  rotate: true\r\n  xy: 112, 57\r\n  size: 24, 20\r\n  orig: 24, 20\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_arm_R1\r\n  rotate: false\r\n  xy: 1, 1\r\n  size: 25, 16\r\n  orig: 25, 16\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_arm_R2\r\n  rotate: true\r\n  xy: 120, 12\r\n  size: 24, 19\r\n  orig: 24, 19\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_body1\r\n  rotate: false\r\n  xy: 73, 38\r\n  size: 37, 43\r\n  orig: 37, 43\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_eye1\r\n  rotate: false\r\n  xy: 73, 4\r\n  size: 45, 32\r\n  orig: 45, 32\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_eye2\r\n  rotate: false\r\n  xy: 134, 74\r\n  size: 7, 7\r\n  orig: 7, 7\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_eye3\r\n  rotate: false\r\n  xy: 134, 65\r\n  size: 7, 7\r\n  orig: 7, 7\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_head1\r\n  rotate: false\r\n  xy: 1, 19\r\n  size: 70, 63\r\n  orig: 70, 63\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_leg_L1\r\n  rotate: false\r\n  xy: 123, 83\r\n  size: 17, 24\r\n  orig: 17, 24\r\n  offset: 0, 0\r\n  index: -1\r\nxg1_leg_R1\r\n  rotate: true\r\n  xy: 112, 38\r\n  size: 17, 21\r\n  orig: 17, 21\r\n  offset: 0, 0\r\n  index: -1\r\nyy\r\n  rotate: false\r\n  xy: 1, 84\r\n  size: 120, 52\r\n  orig: 120, 52\r\n  offset: 0, 0\r\n  index: -1\r\n",
+  "textures": [
+    {
+      "__uuid__": "c1b16094-32ef-4dc2-9199-bda82648cc57"
+    }
+  ],
+  "textureNames": [
+    "e1.png"
+  ],
+  "scale": 1
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "cheng_6",
+    "texture": "c6f58095-9d44-4b8e-acf2-75f5056c8ae8",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      318,
+      212
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      318,
+      212
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

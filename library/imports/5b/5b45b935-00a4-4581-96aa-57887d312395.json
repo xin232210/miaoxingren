@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Monster1-Attack_25",
+    "texture": "5e927df2-0a9d-42d7-9501-b7cc5355fb08",
+    "atlas": "",
+    "rect": [
+      85,
+      149,
+      253,
+      224
+    ],
+    "offset": [
+      -13.5,
+      -36
+    ],
+    "originalSize": [
+      450,
+      450
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

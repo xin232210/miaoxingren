@@ -1,0 +1,17 @@
+{
+  "__type__": "sp.SkeletonData",
+  "_name": "jiasu",
+  "_objFlags": 0,
+  "_native": ".bin",
+  "_skeletonJson": null,
+  "_atlasText": "\njiasu.png\nsize: 391,108\nformat: RGBA8888\nfilter: Linear,Linear\nrepeat: none\nG\n  rotate: false\n  xy: 1, 73\n  size: 39, 34\n  orig: 39, 34\n  offset: 0, 0\n  index: -1\nGX\n  rotate: false\n  xy: 42, 71\n  size: 348, 36\n  orig: 348, 36\n  offset: 0, 0\n  index: -1\nGX2\n  rotate: false\n  xy: 1, 1\n  size: 378, 68\n  orig: 378, 68\n  offset: 0, 0\n  index: -1\n",
+  "textures": [
+    {
+      "__uuid__": "65342547-6eed-41bd-b0d3-d509bdbd3fa4"
+    }
+  ],
+  "textureNames": [
+    "jiasu.png"
+  ],
+  "scale": 1
+}

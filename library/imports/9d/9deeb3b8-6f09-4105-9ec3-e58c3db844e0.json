@@ -1,0 +1,7 @@
+{
+  "__type__": "cc.TextAsset",
+  "_name": "Monster5.atlas",
+  "_objFlags": 0,
+  "_native": "",
+  "text": "Monster5.png\nsize:1024,512\nfilter:Linear,Linear\npma:true\nBody\nbounds:454,252,208,225\nBox\nbounds:2,27,450,450\nHandB\nbounds:454,2,99,117\nHandF\nbounds:454,121,76,129\nLegB\nbounds:555,68,89,60\nrotate:90\nLegF\nbounds:532,159,91,58\nrotate:90\n"
+}

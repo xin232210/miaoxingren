@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "dhk1",
+    "texture": "eac40b12-650d-47ff-a678-924ff83a7823",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      78,
+      68
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      78,
+      68
+    ],
+    "capInsets": [
+      20,
+      17,
+      53,
+      35
+    ]
+  }
+}

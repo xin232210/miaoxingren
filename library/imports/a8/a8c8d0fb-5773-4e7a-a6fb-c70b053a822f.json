@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Splash",
+    "texture": "9576b16d-778d-4c8d-97d0-80b6f91a76d0",
+    "atlas": "",
+    "rect": [
+      13,
+      15,
+      416,
+      320
+    ],
+    "offset": [
+      1.5,
+      -7.5
+    ],
+    "originalSize": [
+      439,
+      335
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

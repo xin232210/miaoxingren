@@ -1,0 +1,38 @@
+{
+  "ver": "2.3.7",
+  "uuid": "98b687dd-e25d-4d9e-bba0-ba6189f24223",
+  "importer": "texture",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 450,
+  "height": 450,
+  "platformSettings": {},
+  "subMetas": {
+    "Monster1-Idle_02": {
+      "ver": "1.0.6",
+      "uuid": "f2ef9e1b-2e4e-4464-a0f3-961ac77d4a31",
+      "importer": "sprite-frame",
+      "rawTextureUuid": "98b687dd-e25d-4d9e-bba0-ba6189f24223",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -9,
+      "offsetY": -52.5,
+      "trimX": 91,
+      "trimY": 171,
+      "width": 250,
+      "height": 213,
+      "rawWidth": 450,
+      "rawHeight": 450,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

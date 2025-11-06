@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "qipaokuang",
+    "texture": "61b28276-6336-41f6-a083-45efc8fb0609",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      306,
+      120
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      306,
+      120
+    ],
+    "capInsets": [
+      90,
+      40,
+      90,
+      40
+    ]
+  }
+}
