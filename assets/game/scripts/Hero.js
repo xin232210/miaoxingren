@@ -25,16 +25,44 @@ cc.Class({
         this.enabled = true;
     },
     start: function () {},
-    initBy: function (t, e, i) {
+    initBy: function (t, e, i, characterSpine) {
         var n = this;
         this.scene = t;
         this.info = i;
         this.item = e;
         
-        this.spine = this.item.spine;
+        // 使用传入的character spine作为显示spine
+        this.spine = characterSpine;
+        this.characterSpine = characterSpine;
         
-        // 保存item.spine节点的初始位置（相对于其父节点）
-        this.itemSpineInitialPos = this.item.spine.node.position.clone();
+        // 保存原来的item.spine引用
+        this.itemSpineOriginal = this.item.spine;
+        
+        // 检查原始spine和character spine是否是同一个对象
+        var isSameSpine = (this.itemSpineOriginal === characterSpine);
+        
+        // 将item.spine指向character spine，这样Item组件能正常工作
+        this.item.spine = characterSpine;
+        
+        // 保存item.spine节点的初始位置（如果存在）
+        if (this.itemSpineOriginal && this.itemSpineOriginal.node) {
+            this.itemSpineInitialPos = this.itemSpineOriginal.node.position.clone();
+            
+            // 只有当原始spine和character spine不是同一个对象时，才隐藏原始spine
+            // 如果是同一个，说明用户在编辑器中已经配置了character spine，不应该隐藏它
+            if (!isSameSpine) {
+                console.log("[Hero] 隐藏原始plant spine，ID:" + this.info.id);
+                this.itemSpineOriginal.node.active = false;
+            } else {
+                console.log("[Hero] 使用编辑器配置的spine，不隐藏，ID:" + this.info.id);
+            }
+        }
+        
+        // 确保当前使用的spine是可见的
+        if (this.spine && this.spine.node) {
+            this.spine.node.active = true;
+            console.log("[Hero] 确保spine可见，ID:" + this.info.id + ", active:" + this.spine.node.active);
+        }
         
         var o = this.info.json.range;
         this.atkRR = o * o;
@@ -42,7 +70,11 @@ cc.Class({
         this.hp = this.item.maxHp;
         this.shieldValue = 0;
         this.hasDie = !1;
+        
+        // 设置角色动画和事件监听
         this.setAnimation(0, "Idle", !0, null);
+        this.setupAnimationEvents();
+        
         this.isPhy = !0;
         this.isMagic = !0;
         this.is3gz = [2, 5, 9, 10].some(function (t) {
@@ -61,11 +93,25 @@ cc.Class({
         this.hasReachedAttackRange = false;
         this.isInitialized = true;
         
+        // 攻击状态初始化
+        this.isAttacking = false;
+        this.currentAttackTarget = null;
+        this.item.inCoolDown = false; // 确保冷却状态被正确初始化
+        
+        // 不再需要子弹系统，攻击通过动画事件触发
+        this.useCharacterAttack = true;
+        
+        console.log("[Hero] 攻击状态初始化，ID:" + this.info.id + ", isAttacking:" + this.isAttacking + ", inCoolDown:" + this.item.inCoolDown);
+        
         // 关键：确保Hero组件在初始化后启用，以便update方法能被调用
         this.enabled = true;
         
         // 调试日志，确认初始化完成
-        console.log("[Hero] initBy完成，ID:" + this.info.id + ", enabled:" + this.enabled + ", 初始位置:", this.initialPosition);
+        console.log("[Hero] initBy完成，ID:" + this.info.id + ", enabled:" + this.enabled + ", spine:" + (this.spine ? this.spine.defaultSkin : "null") + ", 攻击范围:" + Math.sqrt(this.atkRR));
+        console.log("[Hero] spine节点信息 - active:" + (this.spine && this.spine.node ? this.spine.node.active : "null") + 
+                    ", 位置:" + (this.spine && this.spine.node ? this.spine.node.position : "null") + 
+                    ", 缩放:" + (this.spine && this.spine.node ? this.spine.node.scale : "null") + 
+                    ", 不透明度:" + (this.spine && this.spine.node ? this.spine.node.opacity : "null"));
     },
     onLvup: function (t) {
         if (this.item.index == t) {
@@ -73,9 +119,121 @@ cc.Class({
             this.scene.hub.showLvupEffect(this.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
         }
     },
+    setupAnimationEvents: function () {
+        var n = this;
+        // 监听Spine动画事件，在攻击动画的关键帧触发伤害判定
+        if (this.spine && this.spine.setEventListener) {
+            this.spine.setEventListener(function (trackEntry, event) {
+                // 当动画事件名为"attack"或"hit"时，执行攻击逻辑
+                if (event.data.name === "attack" || event.data.name === "hit") {
+                    n.onAnimationAttackEvent();
+                }
+            });
+        }
+    },
+    onAnimationAttackEvent: function () {
+        // 在动画事件触发时进行伤害判定
+        var target = this.scene.chooseEnemy(this, this.atkRR);
+        if (target && target.hp > 0) {
+            var damage = this.getAtk(this.item.lv);
+            this.dealDamageToEnemy(target, damage);
+        }
+    },
+    dealDamageToEnemy: function (enemy, damage) {
+        console.log("[Hero dealDamageToEnemy] 开始计算，ID:" + this.info.id + ", 原始伤害:" + damage + ", 敌人HP:" + enemy.hp);
+        
+        // 应用各种增益效果
+        if (this.checkBuff(101)) {
+            damage *= 1.25;
+        }
+        if (this.checkBuff(201)) {
+            damage *= 1.25;
+        }
+        if (this.checkBuff(504)) {
+            damage *= 1.5;
+        }
+        if (this.checkBuff(701)) {
+            damage *= 1.25;
+        }
+        if (this.checkBuff(901)) {
+            damage *= 1.25;
+        }
+        if (this.checkBuff(1101)) {
+            damage *= 1.25;
+        }
+        if (this.checkBuff(1201)) {
+            damage *= 1.25;
+        }
+        
+        // 检查暴击
+        var critType = 0;
+        if (this.checkCrit({}, enemy)) {
+            critType = 1;
+            damage *= this.getCritPlus({}, enemy);
+            console.log("[Hero] 暴击！伤害:" + damage);
+        }
+        
+        // 随机浮动
+        damage *= cc.math.randomRange(0.95, 1.05);
+        
+        console.log("[Hero dealDamageToEnemy] 最终伤害:" + Math.floor(damage) + ", 暴击:" + (critType === 1));
+        
+        // 造成伤害
+        enemy.hurtBy(this, damage);
+        
+        // 显示伤害数字
+        this.scene.showEnemyHurtNum(critType, enemy.node.position, damage);
+        
+        // 显示击中特效（仅在非character攻击系统时显示plant特效）
+        // character系统使用动画自带的特效
+        if (!this.useCharacterAttack) {
+            this.scene.showJsEffect(enemy.node.position, this.info.id);
+        }
+        
+        // 统计伤害
+        cc.pvz.runtimeData.stats[this.info.id] += damage;
+        
+        // 应用各种debuff效果
+        if (this.checkBuff(704) && Math.random() < 0.5) {
+            enemy.addBuffWeak();
+        }
+        if (this.checkBuff(204)) {
+            enemy.repulse(this.node.position);
+        }
+        if (this.checkBuff(403)) {
+            enemy.repulse(this.node.position);
+        }
+        if (this.checkBuff(1102)) {
+            enemy.repulse(this.node.position);
+        }
+        
+        console.log("[Hero dealDamageToEnemy] 完成，敌人剩余HP:" + enemy.hp);
+    },
     setAnimation: function (t, e, i, n) {
         // this.spine.setAnimation(t, e + (this.item.lv + 1), i);
-        this.spine.setAnimation(t, e, i);
+        
+        if (!this.spine) {
+            console.error("[Hero setAnimation] spine为空！ID:" + (this.info ? this.info.id : "unknown"));
+            return;
+        }
+        
+        // 如果使用character spine，需要映射动画名称
+        var animName = e;
+        if (this.characterSpine && this.spine === this.characterSpine) {
+            // 动画名称映射：plant动画 -> character动画
+            var animMap = {
+                "Idle": "Idle",
+                "Hit": "Hit",
+                "Dead": "Dead",
+                "Walk": "Walk",
+                "fuhuo": "Idle"  // 复活动画暂时映射为Idle，character中没有fuhuo
+            };
+            animName = animMap[e] || e;
+        }
+        
+        console.log("[Hero setAnimation] ID:" + (this.info ? this.info.id : "unknown") + ", 动画:" + animName + ", spine节点active:" + (this.spine.node ? this.spine.node.active : "null"));
+        
+        this.spine.setAnimation(t, animName, i);
         this.spine.setCompleteListener(n);
     },
     getAtk: function (t) {
@@ -148,6 +306,93 @@ cc.Class({
     tryShoot: function (t, e) {
         var i = this;
         
+        // 添加调试计数器
+        if (!this.tryShootCallCount) {
+            this.tryShootCallCount = 0;
+        }
+        this.tryShootCallCount++;
+        
+        // 每10次调用打印一次，避免刷屏
+        if (this.tryShootCallCount % 10 === 1) {
+            console.log("[Hero tryShoot] ID:" + this.info.id + " 被调用，次数:" + this.tryShootCallCount + 
+                        ", useCharacterAttack:" + this.useCharacterAttack + 
+                        ", isAttacking:" + this.isAttacking +
+                        ", inCoolDown:" + this.item.inCoolDown);
+        }
+        
+        // 如果使用character攻击系统，直接播放攻击动画
+        if (this.useCharacterAttack) {
+            // 检查是否有敌人在攻击范围内（使用稍大的范围避免边界问题）
+            var attackRangeBuffer = this.atkRR * 1.05; // 增加5%的容差
+            var target = e || this.scene.chooseEnemy(this, attackRangeBuffer);
+            if (!target || target.hp <= 0) {
+                if (!this.loggedNoTarget || this.tryShootCallCount % 30 === 1) {
+                    console.log("[Hero tryShoot] ID:" + this.info.id + " 没有找到攻击目标，攻击范围:" + Math.sqrt(this.atkRR).toFixed(1));
+                    this.loggedNoTarget = true;
+                }
+                return false;
+            }
+            
+            // 重置"没有目标"日志标志
+            this.loggedNoTarget = false;
+            
+            // 如果正在攻击中，不重复触发
+            if (this.isAttacking) {
+                return false;
+            }
+            
+            this.isAttacking = true;
+            this.currentAttackTarget = target;
+            
+            // 播放攻击动画（Hit或Throwing）
+            var attackAnim = "Hit"; // 默认近战攻击
+            var attackDelay = 200; // 默认延迟200ms触发伤害（动画播放到一半）
+            
+            // 投掷型英雄可以使用Throwing动画
+            if ([4, 5, 12].indexOf(this.info.id) !== -1) {
+                attackAnim = "Throwing";
+                attackDelay = 300; // 投掷动画延迟更长
+            }
+            
+            console.log("[Hero tryShoot] ✅ ID:" + this.info.id + " 开始攻击！动画:" + attackAnim + 
+                        ", 目标ID:" + target.id + ", 目标HP:" + target.hp + 
+                        ", spine存在:" + !!this.spine + ", spine.node.active:" + (this.spine && this.spine.node ? this.spine.node.active : "null"));
+            
+            this.setAnimation(0, attackAnim, false, function () {
+                console.log("[Hero] ✅ ID:" + i.info.id + " 攻击动画完成，isAttacking:" + i.isAttacking + " → false");
+                i.isAttacking = false;
+                i.setAnimation(0, "Idle", true, null);
+                
+                // 使用character攻击系统，不需要子弹重装填机制
+                // Item.js已经设置了inCoolDown=true，我们只需要设置计时器来重置它
+                console.log("[Hero] ID:" + i.info.id + " 设置冷却计时器，当前 inCoolDown:" + i.item.inCoolDown);
+                
+                // 无条件设置冷却计时器（因为Item.js已经设置了inCoolDown=true）
+                var cdTime = i.item.cdMs || 500; // 默认500ms冷却
+                console.log("[Hero] ID:" + i.info.id + " 启动冷却计时器，时间:" + cdTime + "ms");
+                i.scene.setTimeout(function() {
+                    i.item.inCoolDown = false;
+                    console.log("[Hero] ⏰ ID:" + i.info.id + " 冷却完成！inCoolDown:" + i.item.inCoolDown);
+                }, cdTime);
+            });
+            
+            // 延迟触发伤害判定（模拟攻击动画的打击点）
+            this.scene.setTimeout(function () {
+                console.log("[Hero] 💥 ID:" + i.info.id + " 准备造成伤害");
+                if (i.currentAttackTarget && i.currentAttackTarget.hp > 0) {
+                    var damage = i.getAtk(i.item.lv);
+                    console.log("[Hero] 💥 ID:" + i.info.id + " 造成伤害:" + damage + " 给目标ID:" + i.currentAttackTarget.id);
+                    i.dealDamageToEnemy(i.currentAttackTarget, damage);
+                } else {
+                    console.log("[Hero] ⚠️ ID:" + i.info.id + " 目标已失效，取消伤害");
+                }
+            }, attackDelay);
+            
+            this.playSound();
+            return true;
+        }
+        
+        // 以下是原来的子弹系统逻辑（保留向后兼容）
         // 对于需要敌人目标的攻击型英雄（ID 1,2,4,5,7,9,12），检查是否在攻击范围内
         // todo 修改为全部英雄都检测
         var needTargetCheck = [1, 2, 3, 4, 5, 6, 7, 9, 12];
@@ -191,7 +436,7 @@ cc.Class({
                                 }
                             },
                             function () {
-                                if (i.item.bulletCount <= 0) {
+                                if (i.item.bulletCount <= 0 && i.IKBone) {
                                     cc.tween(i.IKBone)
                                         .to(0.064, {
                                             x: 150,
@@ -201,14 +446,18 @@ cc.Class({
                                 }
                             }
                         ),
-                        this.IKBone || (this.IKBone = this.spine.findBone("IK")),
-                        cc
-                            .tween(this.IKBone)
-                            .to(0.064, {
-                                x: (r.node.x - this.node.x) / 0.76,
-                                y: (r.node.y + r.centerY - this.node.y) / 0.76
-                            })
-                            .start(),
+                        // 仅当使用plant spine时才使用IK骨骼
+                        // character spine不需要IK瞄准
+                        (!this.characterSpine || this.spine !== this.characterSpine) && (
+                            this.IKBone || (this.IKBone = this.spine.findBone("IK")),
+                            cc
+                                .tween(this.IKBone)
+                                .to(0.064, {
+                                    x: (r.node.x - this.node.x) / 0.76,
+                                    y: (r.node.y + r.centerY - this.node.y) / 0.76
+                                })
+                                .start()
+                        ),
                         !0))
                 );
             case 6:
@@ -368,7 +617,7 @@ cc.Class({
                         }
                     },
                     function () {
-                        if (i.item.bulletCount <= 0) {
+                        if (i.item.bulletCount <= 0 && i.IKBone) {
                             cc.tween(i.IKBone)
                                 .to(0.064, {
                                     x: 150,
@@ -377,16 +626,20 @@ cc.Class({
                                 .start();
                         }
                     }
-                ),
-                this.IKBone || (this.IKBone = this.spine.findBone("IK")),
-                cc
-                    .tween(this.IKBone)
-                    .to(0.064, {
-                        x: (r.node.x - this.node.x) / 0.76,
-                        y: (r.node.y + r.centerY - this.node.y) / 0.76
-                    })
-                    .start(),
-                !0))
+                        ),
+                        // 仅当使用plant spine时才使用IK骨骼
+                        // character spine不需要IK瞄准
+                        (!this.characterSpine || this.spine !== this.characterSpine) && (
+                            this.IKBone || (this.IKBone = this.spine.findBone("IK")),
+                            cc
+                                .tween(this.IKBone)
+                                .to(0.064, {
+                                    x: (r.node.x - this.node.x) / 0.76,
+                                    y: (r.node.y + r.centerY - this.node.y) / 0.76
+                                })
+                                .start()
+                        ),
+                        !0))
         );
     },
     checkToShoot: function (t) {
@@ -404,6 +657,21 @@ cc.Class({
         }
     },
     getShootAPos: function () {
+        // 如果使用character攻击系统，使用Hand_F骨骼作为攻击点
+        if (this.useCharacterAttack && this.spine) {
+            if (!this.HandBone) {
+                this.HandBone = this.spine.findBone("Hand_F");
+            }
+            if (this.HandBone) {
+                var t = cc.v2(this.HandBone.worldX, this.HandBone.worldY);
+                return this.spine.node.convertToWorldSpaceAR(t);
+            } else {
+                // 如果找不到Hand_F骨骼，返回spine节点位置
+                return this.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO);
+            }
+        }
+        
+        // 原来的子弹系统逻辑（保留向后兼容）
         if (this.GPBone) {
             //
         } else {
@@ -769,27 +1037,51 @@ cc.Class({
         
         // 寻找最近的敌人（所有英雄都移动，不区分类型）
         var e = this.scene.chooseEnemy(this, 999999);
+        
+        // 添加调试日志
+        if (!this.movementDebugCount) {
+            this.movementDebugCount = 0;
+        }
+        this.movementDebugCount++;
+        
+        // 每2秒打印一次调试信息
+        if (this.movementDebugCount % 120 === 1) {
+            console.log("[Hero updateMovement] ID:" + this.info.id + 
+                        ", 找到敌人:" + !!e + 
+                        ", 敌人总数:" + this.scene.enemys.length +
+                        ", isMoving:" + this.isMoving +
+                        ", isAttacking:" + this.isAttacking);
+        }
+        
         if (e && e.hp > 0) {
             this.currentTarget = e;
             var i = e.node.position.add(cc.v2(0, e.centerY));
             var n = i.sub(this.node.position);
             var o = n.lengthSqr();
             
-            // 检查是否在攻击范围内
-            if (o <= this.atkRR) {
+            // 每2秒打印距离信息
+            if (this.movementDebugCount % 120 === 1) {
+                console.log("[Hero updateMovement] ID:" + this.info.id + 
+                            ", 距敌人:" + Math.sqrt(o).toFixed(1) + 
+                            ", 攻击范围:" + Math.sqrt(this.atkRR).toFixed(1));
+            }
+            
+            // 检查是否在攻击范围内（添加小容差值，避免浮点数精度问题）
+            var attackRangeBuffer = this.atkRR * 1.05; // 增加5%的容差
+            if (o <= attackRangeBuffer) {
                 // 在攻击范围内，停止移动
                 if (this.isMoving) {
                     this.isMoving = false;
                     this.hasReachedAttackRange = true;
-                    console.log("[Hero] ID:" + this.info.id + " 到达攻击范围");
-                    // 不立即切换动画，让攻击动画控制
+                    console.log("[Hero] ID:" + this.info.id + " 到达攻击范围，停止移动");
+                    // 动画由攻击系统控制，这里不切换
                 }
             } else {
                 // 不在攻击范围内，继续向敌人移动
                 if (!this.isMoving) {
                     this.isMoving = true;
                     this.hasReachedAttackRange = false;
-                    console.log("[Hero] ID:" + this.info.id + " 开始向敌人移动");
+                    console.log("[Hero] 🚶 ID:" + this.info.id + " 开始向敌人移动，当前距离:" + Math.sqrt(o).toFixed(1));
                     // 只在非攻击状态时切换为移动动画
                     if (!this.isAttacking) {
                         this.setAnimation(0, "Walk", !0, null);
@@ -808,13 +1100,13 @@ cc.Class({
 
                 this.updateItemSpinePosition();
                 
-                // 调试：打印移动信息（每秒一次）
+                // 调试：打印移动信息（每2秒一次）
                 if (!this.lastMoveLogTime) {
                     this.lastMoveLogTime = 0;
                 }
                 var nowTime = Date.now();
-                if (nowTime - this.lastMoveLogTime > 1000) {
-                    console.log("[Hero Move] ID:" + this.info.id + ", 从" + oldPos + " 移动到" + this.node.position + ", 移动量:" + c);
+                if (nowTime - this.lastMoveLogTime > 2000) {
+                    console.log("[Hero Move] 🚶 ID:" + this.info.id + " 正在移动，位置:" + this.node.position.x.toFixed(1) + "," + this.node.position.y.toFixed(1));
                     this.lastMoveLogTime = nowTime;
                 }
                 
@@ -827,6 +1119,13 @@ cc.Class({
         }
     },
     updateItemSpinePosition: function () {
+        // 如果使用character攻击系统，不需要更新item.spine的位置
+        // 因为character spine是Hero节点的子节点，会自动跟随移动
+        if (this.useCharacterAttack) {
+            return;
+        }
+        
+        // 原来的plant系统需要同步item.spine位置（保留向后兼容）
         // 将Hero节点的世界坐标转换为item.spine父节点的本地坐标
         if (this.item && this.item.spine && this.item.spine.node) {
             // 获取Hero节点的世界坐标
@@ -876,7 +1175,9 @@ cc.Class({
             if (this.isMoving) {
                 this.isMoving = false;
                 // 返回初始位置后，恢复item.spine到初始位置
-                if (this.item && this.item.spine && this.item.spine.node) {
+                // 如果使用character攻击系统，不需要恢复item.spine位置
+                if (!this.useCharacterAttack && 
+                    this.item && this.item.spine && this.item.spine.node) {
                     this.item.spine.node.position = this.itemSpineInitialPos.clone();
                 }
                 if (!this.isAttacking) {

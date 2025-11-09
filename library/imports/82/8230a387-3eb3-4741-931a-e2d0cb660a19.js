@@ -422,25 +422,118 @@ cc.Class({
     var e = this;
     this.heroes = [];
     t.blockRoot.boardItemsRoot.children.forEach(function (t, i) {
-      var n = t.getComponent("Item");
-      cc.pvz.utils.useBundleAsset("actors", "plant/plant" + n.id, cc.Prefab, function (t) {
-        var o = cc.instantiate(t);
-        var s = o.getComponent("Hero");
-        o.position = e.objsRoot.convertToNodeSpaceAR(n.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
-        o.parent = e.objsRoot;
-        s.initBy(e, n, {
+      var n = t.getComponent("Item"); // 检查用户是否已经在编辑器中设置了character spine
+      // 如果n.spine已经配置好了，就直接使用它（保留用户的设置）
+
+      var useExistingSpine = n.spine && n.spine.skeletonData && n.spine.skeletonData.name && n.spine.skeletonData.name.indexOf("Characters") !== -1;
+
+      if (useExistingSpine) {
+        // 用户已经在编辑器中配置了character spine，直接使用
+        console.log("[Game] 使用编辑器配置的spine，ID:" + n.id + ", skin:" + n.spine.defaultSkin);
+        console.log("[Game] 原始spine状态 - active:" + n.spine.node.active + ", scale:" + n.spine.node.scale + ", scaleX:" + n.spine.node.scaleX + ", scaleY:" + n.spine.node.scaleY); // 保存spine的原始设置（在移动节点之前）
+
+        var spineActive = n.spine.node.active;
+        var spineScale = n.spine.node.scale;
+        var spineScaleX = n.spine.node.scaleX;
+        var spineScaleY = n.spine.node.scaleY;
+        var spineOpacity = n.spine.node.opacity; // 如果spine原本就是隐藏或缩放为0，设置为默认值
+
+        if (!spineActive || spineScale === 0 || spineScaleX === 0 && spineScaleY === 0) {
+          console.log("[Game] spine原本隐藏或缩放为0，使用默认设置");
+          spineActive = true;
+          spineScale = 0.3; // 默认缩放
+
+          spineScaleX = 0.3;
+          spineScaleY = 0.3;
+        } // 创建Hero节点
+
+
+        var heroNode = new cc.Node("hero" + n.id);
+        heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
+        heroNode.parent = e.objsRoot; // 添加Hero组件
+
+        var heroComponent = heroNode.addComponent("Hero"); // 将spine节点移动到hero节点下
+
+        n.spine.node.removeFromParent(false);
+        n.spine.node.parent = heroNode;
+        n.spine.node.position = cc.Vec2.ZERO; // 恢复或设置spine节点属性，确保可见
+
+        n.spine.node.active = spineActive;
+        n.spine.node.opacity = spineOpacity > 0 ? spineOpacity : 255;
+        n.spine.node.scale = spineScale;
+        n.spine.node.scaleX = spineScaleX;
+        n.spine.node.scaleY = spineScaleY; // 强制设置spine动画，确保渲染
+
+        if (n.spine.defaultAnimation) {
+          n.spine.setAnimation(0, n.spine.defaultAnimation, true);
+        } else {
+          n.spine.setAnimation(0, "Idle", true);
+        } // 设置hero节点的zIndex，确保正确显示
+
+
+        heroNode.zIndex = -heroNode.y;
+        console.log("[Game] spine设置后 - active:" + n.spine.node.active + ", scale:" + n.spine.node.scale + ", scaleX:" + n.spine.node.scaleX + ", scaleY:" + n.spine.node.scaleY); // 初始化Hero组件，使用已配置的spine
+
+        heroComponent.initBy(e, n, {
           json: n.json,
           index: i,
           id: n.id,
           lv1: cc.pvz.PlayerData.getToolData(n.id).lv - 1,
           maxLv: 0
-        });
-        s.position2 = o.position.add(n.attOffset);
-        n.hero = s;
+        }, n.spine);
+        heroComponent.position2 = heroNode.position.add(n.attOffset);
+        n.hero = heroComponent;
         n.initHeroNodes();
-        e.heroes.push(s);
+        e.heroes.push(heroComponent);
         e.updateHp(!1);
-      });
+        console.log("[Game] Hero节点创建完成，位置:" + heroNode.position + ", heroZIndex:" + heroNode.zIndex);
+        console.log("[Game] Hero父节点:" + heroNode.parent.name + ", spine父节点:" + n.spine.node.parent.name);
+        console.log("[Game] 最终spine状态 - active:" + n.spine.node.active + ", scale:" + n.spine.node.scale + ", opacity:" + n.spine.node.opacity);
+      } else {
+        // 用户没有配置spine，动态创建（回退逻辑）
+        console.log("[Game] 动态创建spine，ID:" + n.id); // 创建Hero节点
+
+        var heroNode = new cc.Node("hero" + n.id);
+        heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
+        heroNode.parent = e.objsRoot; // 添加Hero组件
+
+        var heroComponent = heroNode.addComponent("Hero"); // 加载character角色资源
+
+        var characterSkinName = "Character" + (n.id < 10 ? "0" + n.id : n.id);
+        cc.pvz.utils.useBundleAsset("actors", "character/Characters", sp.SkeletonData, function (characterSpineData) {
+          // 创建character的spine节点
+          var characterSpineNode = new cc.Node("characterSpine");
+          characterSpineNode.parent = heroNode;
+          var characterSpine = characterSpineNode.addComponent(sp.Skeleton);
+          characterSpine.skeletonData = characterSpineData;
+          characterSpine.defaultSkin = characterSkinName;
+          characterSpine.setSkin(characterSkinName);
+          characterSpine.defaultAnimation = "Idle";
+          characterSpine.setAnimation(0, "Idle", true);
+          characterSpine.premultipliedAlpha = false;
+          characterSpine.useTint = true;
+          characterSpine.enableBatch = true; // 确保spine节点可见
+
+          characterSpineNode.active = true;
+          characterSpineNode.opacity = 255; // 设置hero节点的zIndex，确保正确显示
+
+          heroNode.zIndex = -heroNode.y; // 初始化Hero组件
+
+          heroComponent.initBy(e, n, {
+            json: n.json,
+            index: i,
+            id: n.id,
+            lv1: cc.pvz.PlayerData.getToolData(n.id).lv - 1,
+            maxLv: 0
+          }, characterSpine);
+          heroComponent.position2 = heroNode.position.add(n.attOffset);
+          n.hero = heroComponent;
+          n.initHeroNodes();
+          e.heroes.push(heroComponent);
+          e.updateHp(!1);
+          console.log("[Game] Hero初始化完成，ID:" + n.id + ", skin:" + characterSkinName + ", 位置:" + heroNode.position);
+        });
+      }
     });
   },
   hasHero: function hasHero(t) {
