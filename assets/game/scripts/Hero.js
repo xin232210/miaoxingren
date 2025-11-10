@@ -322,16 +322,63 @@ cc.Class({
         
         // 如果使用character攻击系统，直接播放攻击动画
         if (this.useCharacterAttack) {
-            // 检查是否有敌人在攻击范围内（使用稍大的范围避免边界问题）
-            var attackRangeBuffer = this.atkRR * 1.05; // 增加5%的容差
-            var target = e || this.scene.chooseEnemy(this, attackRangeBuffer);
+            // 优先使用updateMovement已经找到的目标，确保距离计算一致性
+            var target = e || this.currentTarget;
+            
+            // 如果没有当前目标，尝试查找
+            if (!target || target.hp <= 0) {
+                // 检查是否有敌人在攻击范围内（使用稍大的范围避免边界问题）
+                var attackRangeBuffer = this.atkRR * 1.05; // 增加5%的容差
+                target = this.scene.chooseEnemy(this, attackRangeBuffer);
+            }
+            
+            // 如果有目标，验证距离（使用与updateMovement相同的计算方式）
+            if (target && target.hp > 0) {
+                var targetPos = target.node.position.add(cc.v2(0, target.centerY));
+                var distSqr = targetPos.sub(this.node.position).lengthSqr();
+                var attackRangeBuffer = this.atkRR * 1.05;
+                
+                // 如果目标不在攻击范围内，清除目标
+                if (distSqr > attackRangeBuffer) {
+                    if (this.tryShootCallCount % 30 === 1) {
+                        console.log("[Hero tryShoot] ID:" + this.info.id + " 目标距离:" + Math.sqrt(distSqr).toFixed(1) + " > 攻击范围:" + Math.sqrt(attackRangeBuffer).toFixed(1) + "，清除目标");
+                    }
+                    target = null;
+                }
+            } else {
+                target = null;
+            }
+            
             if (!target || target.hp <= 0) {
                 if (!this.loggedNoTarget || this.tryShootCallCount % 30 === 1) {
                     console.log("[Hero tryShoot] ID:" + this.info.id + " 没有找到攻击目标，攻击范围:" + Math.sqrt(this.atkRR).toFixed(1));
                     this.loggedNoTarget = true;
                 }
+                // 确保重置攻击状态，避免卡住
+                if (this.isAttacking) {
+                    console.log("[Hero tryShoot] ID:" + this.info.id + " 没有目标，重置攻击状态");
+                    this.isAttacking = false;
+                }
+                // 关键修复：如果之前认为到达了攻击范围，但现在找不到目标，说明判断有误，需要重置让英雄继续移动
+                if (this.hasReachedAttackRange) {
+                    // 增加失败计数器
+                    if (!this.attackFailCount) {
+                        this.attackFailCount = 0;
+                    }
+                    this.attackFailCount++;
+                    
+                    // 如果连续多次找不到目标，重置攻击范围标记，让英雄继续向敌人移动
+                    if (this.attackFailCount >= 5) {
+                        console.log("[Hero tryShoot] ⚠️ ID:" + this.info.id + " 连续" + this.attackFailCount + "次找不到目标，重置hasReachedAttackRange，继续移动");
+                        this.hasReachedAttackRange = false;
+                        this.attackFailCount = 0;
+                    }
+                }
                 return false;
             }
+            
+            // 找到目标了，重置失败计数器
+            this.attackFailCount = 0;
             
             // 重置"没有目标"日志标志
             this.loggedNoTarget = false;
@@ -1035,6 +1082,17 @@ cc.Class({
             return;
         }
         
+        // 清理已死亡的目标引用
+        if (this.currentTarget && this.currentTarget.hp <= 0) {
+            console.log("[Hero] ID:" + this.info.id + " 清除已死亡的目标引用");
+            this.currentTarget = null;
+            // 如果之前已经到达攻击范围，现在目标死了，需要重新开始寻找和移动
+            if (this.hasReachedAttackRange) {
+                this.hasReachedAttackRange = false;
+                console.log("[Hero] ID:" + this.info.id + " 重置攻击范围标记，准备寻找新目标");
+            }
+        }
+        
         // 寻找最近的敌人（所有英雄都移动，不区分类型）
         var e = this.scene.chooseEnemy(this, 999999);
         
@@ -1046,11 +1104,30 @@ cc.Class({
         
         // 每2秒打印一次调试信息
         if (this.movementDebugCount % 120 === 1) {
+            // 统计活着的敌人数量
+            var aliveEnemyCount = 0;
+            var enemyPositions = [];
+            if (this.scene.enemys) {
+                this.scene.enemys.forEach(function(enemy) {
+                    if (enemy.hp > 0) {
+                        aliveEnemyCount++;
+                        enemyPositions.push("(" + enemy.node.x.toFixed(0) + "," + enemy.node.y.toFixed(0) + ",HP:" + enemy.hp.toFixed(0) + ")");
+                    }
+                });
+            }
+            
             console.log("[Hero updateMovement] ID:" + this.info.id + 
+                        ", 英雄位置:(" + this.node.x.toFixed(0) + "," + this.node.y.toFixed(0) + ")" +
                         ", 找到敌人:" + !!e + 
-                        ", 敌人总数:" + this.scene.enemys.length +
+                        (e ? ", 敌人位置:(" + e.node.x.toFixed(0) + "," + e.node.y.toFixed(0) + "), 敌人HP:" + e.hp.toFixed(0) : "") +
+                        ", 活着的敌人:" + aliveEnemyCount + "/" + this.scene.enemys.length +
                         ", isMoving:" + this.isMoving +
-                        ", isAttacking:" + this.isAttacking);
+                        ", isAttacking:" + this.isAttacking +
+                        ", hasReachedAttackRange:" + this.hasReachedAttackRange);
+            
+            if (aliveEnemyCount > 0 && aliveEnemyCount <= 10) {
+                console.log("[Hero updateMovement] 剩余敌人位置: " + enemyPositions.join(", "));
+            }
         }
         
         if (e && e.hp > 0) {
@@ -1063,11 +1140,14 @@ cc.Class({
             if (this.movementDebugCount % 120 === 1) {
                 console.log("[Hero updateMovement] ID:" + this.info.id + 
                             ", 距敌人:" + Math.sqrt(o).toFixed(1) + 
-                            ", 攻击范围:" + Math.sqrt(this.atkRR).toFixed(1));
+                            ", 攻击范围:" + Math.sqrt(this.atkRR).toFixed(1) + 
+                            ", 停止距离:" + Math.sqrt(this.atkRR * 0.98).toFixed(1) +
+                            ", 是否在范围内:" + (o <= this.atkRR * 0.98));
             }
             
-            // 检查是否在攻击范围内（添加小容差值，避免浮点数精度问题）
-            var attackRangeBuffer = this.atkRR * 1.05; // 增加5%的容差
+            // 检查是否在攻击范围内（使用0.98的系数，确保英雄移动到确实能攻击到的位置）
+            // 这样可以避免边界情况导致英雄停止移动但无法攻击
+            var attackRangeBuffer = this.atkRR * 0.98; // 稍微保守一点，确保能攻击到
             if (o <= attackRangeBuffer) {
                 // 在攻击范围内，停止移动
                 if (this.isMoving) {
@@ -1081,10 +1161,12 @@ cc.Class({
                 if (!this.isMoving) {
                     this.isMoving = true;
                     this.hasReachedAttackRange = false;
-                    console.log("[Hero] 🚶 ID:" + this.info.id + " 开始向敌人移动，当前距离:" + Math.sqrt(o).toFixed(1));
+                    console.log("[Hero] 🚶 ID:" + this.info.id + " 开始向敌人移动，当前距离:" + Math.sqrt(o).toFixed(1) + ", 目标位置:" + e.node.position.x.toFixed(1) + "," + e.node.position.y.toFixed(1));
                     // 只在非攻击状态时切换为移动动画
                     if (!this.isAttacking) {
                         this.setAnimation(0, "Walk", !0, null);
+                    } else {
+                        console.log("[Hero] ⚠️ ID:" + this.info.id + " 需要移动但还在攻击状态，不切换动画");
                     }
                 }
                 
@@ -1115,6 +1197,18 @@ cc.Class({
             }
         } else {
             // 没有有效敌人，返回初始位置
+            // 打印警告信息，帮助调试
+            if (this.movementDebugCount % 120 === 1) {
+                var aliveCount = 0;
+                if (this.scene.enemys) {
+                    this.scene.enemys.forEach(function(enemy) {
+                        if (enemy.hp > 0) aliveCount++;
+                    });
+                }
+                if (aliveCount > 0) {
+                    console.warn("[Hero updateMovement] ⚠️ ID:" + this.info.id + " chooseEnemy返回null，但有" + aliveCount + "个活着的敌人！");
+                }
+            }
             this.returnToInitialPosition(t);
         }
     },

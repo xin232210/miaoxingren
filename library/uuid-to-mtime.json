@@ -645,8 +645,8 @@
     "relativePath": "game/tj-in.anim"
   },
   "f01a59d4-ee93-4ffb-9c73-9652a36d94f7": {
-    "asset": 1762704670537,
-    "meta": 1762704670544,
+    "asset": 1762785985032,
+    "meta": 1762785985040,
     "relativePath": "game/game1.fire"
   },
   "1d6c21f2-2c20-4b8a-bf50-51fb3372ba24": {
@@ -8115,13 +8115,13 @@
     "relativePath": "main/PlantsInfo.json"
   },
   "8230a387-3eb3-4741-931a-e2d0cb660a19": {
-    "asset": 1762705992155,
-    "meta": 1762705998130,
+    "asset": 1762783574745,
+    "meta": 1762784734644,
     "relativePath": "game/scripts/game.js"
   },
   "c10aa629-e2ff-4941-ae4e-d18c6902dfc2": {
-    "asset": 1762705992155,
-    "meta": 1762705998189,
+    "asset": 1762786232136,
+    "meta": 1762786272643,
     "relativePath": "game/scripts/Hero.js"
   }
 }
