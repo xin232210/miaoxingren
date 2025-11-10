@@ -437,16 +437,26 @@ cc.Class({
                 
                 // 创建Hero节点
                 var heroNode = new cc.Node("hero" + n.id);
-                heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
+                // 【修复】使用Item节点的位置作为Hero节点位置，而不是spine的(0,0)点
+                // 这样Hero节点会在格子中央，spine在Hero节点下方偏移
+                heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
                 heroNode.parent = e.objsRoot;
+                console.log("[Game] Hero节点位置（基于Item节点）- ID:" + n.id + ", x:" + heroNode.position.x.toFixed(1) + ", y:" + heroNode.position.y.toFixed(1));
                 
                 // 添加Hero组件
                 var heroComponent = heroNode.addComponent("Hero");
                 
+                // 【关键】在移动spine之前，保存它在Item节点下的位置
+                // 这个位置将用于一波结束后恢复spine
+                n.spineInitialPos = n.spine.node.position.clone();
+                console.log("[Game] 保存spine在Item节点下的初始位置 - ID:" + n.id + ", x:" + n.spineInitialPos.x + ", y:" + n.spineInitialPos.y);
+                
                 // 将spine节点移动到hero节点下
                 n.spine.node.removeFromParent(false);
                 n.spine.node.parent = heroNode;
-                n.spine.node.position = cc.Vec2.ZERO;
+                // 【修复】保持spine相对于Item的偏移量，这样spine在Hero节点下的位置正确
+                n.spine.node.position = n.spineInitialPos.clone();
+                console.log("[Game] spine在Hero节点下的位置 - ID:" + n.id + ", x:" + n.spine.node.position.x + ", y:" + n.spine.node.position.y);
                 
                 // 恢复或设置spine节点属性，确保可见
                 n.spine.node.active = spineActive;
@@ -491,8 +501,10 @@ cc.Class({
                 
                 // 创建Hero节点
                 var heroNode = new cc.Node("hero" + n.id);
-                heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.spine.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
+                // 【修复】使用Item节点的位置作为Hero节点位置
+                heroNode.position = e.objsRoot.convertToNodeSpaceAR(n.node.convertToWorldSpaceAR(cc.Vec2.ZERO));
                 heroNode.parent = e.objsRoot;
+                console.log("[Game] Hero节点位置（基于Item节点）- ID:" + n.id + ", x:" + heroNode.position.x.toFixed(1) + ", y:" + heroNode.position.y.toFixed(1));
                 
                 // 添加Hero组件
                 var heroComponent = heroNode.addComponent("Hero");
@@ -500,6 +512,10 @@ cc.Class({
                 // 加载character角色资源
                 var characterSkinName = "Character" + (n.id < 10 ? "0" + n.id : n.id);
                 cc.pvz.utils.useBundleAsset("actors", "character/Characters", sp.SkeletonData, function (characterSpineData) {
+                    // 【关键】保存spine的初始位置（对于动态创建的spine，初始位置是(0,0)）
+                    n.spineInitialPos = cc.v2(0, 0);
+                    console.log("[Game] 动态创建spine，初始位置:", n.spineInitialPos);
+                    
                     // 创建character的spine节点
                     var characterSpineNode = new cc.Node("characterSpine");
                     characterSpineNode.parent = heroNode;

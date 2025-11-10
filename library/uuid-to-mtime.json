@@ -1904,11 +1904,6 @@
     "meta": 1762700842144,
     "relativePath": "game/config/Level7.json"
   },
-  "19e1fbcf-5ac8-4860-b549-ce96fa5834dc": {
-    "asset": 1762699560841,
-    "meta": 1762700842167,
-    "relativePath": "game/scripts/Item.js"
-  },
   "3e154ddd-43cc-4ff3-864a-275b43752e59": {
     "asset": 1762180931572,
     "meta": 1762700842168,
@@ -8114,14 +8109,19 @@
     "meta": 1762704819635,
     "relativePath": "main/PlantsInfo.json"
   },
-  "8230a387-3eb3-4741-931a-e2d0cb660a19": {
-    "asset": 1762783574745,
-    "meta": 1762784734644,
-    "relativePath": "game/scripts/game.js"
-  },
   "c10aa629-e2ff-4941-ae4e-d18c6902dfc2": {
-    "asset": 1762786232136,
-    "meta": 1762786272643,
+    "asset": 1762787854154,
+    "meta": 1762788076045,
     "relativePath": "game/scripts/Hero.js"
+  },
+  "19e1fbcf-5ac8-4860-b549-ce96fa5834dc": {
+    "asset": 1762788073514,
+    "meta": 1762788076079,
+    "relativePath": "game/scripts/Item.js"
+  },
+  "8230a387-3eb3-4741-931a-e2d0cb660a19": {
+    "asset": 1762788248167,
+    "meta": 1762788280882,
+    "relativePath": "game/scripts/game.js"
   }
 }

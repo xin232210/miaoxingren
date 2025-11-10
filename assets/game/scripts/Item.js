@@ -454,8 +454,63 @@ cc.Class({
             }
         }
         this.hero.setAnimation(0, "Idle", !0, null);
+        
+        // 【关键修复】在销毁Hero之前，将spine节点移回到Item节点下
+        // 使用更安全的方式，不依赖可能已经失效的节点
+        if (this.hero.characterSpine && this.hero.characterSpine.node && this.node && this.node.isValid) {
+            try {
+                console.log("[Item stopHeroLogic] 将spine移回Item节点，ID:" + this.id);
+                
+                // 保存spine当前的active状态
+                var spineActive = this.hero.characterSpine.node.active;
+                
+                // 直接将spine移回Item节点，使用原始位置（如果有保存的话）
+                this.hero.characterSpine.node.removeFromParent(false);
+                this.hero.characterSpine.node.parent = this.node;
+                
+                // 恢复到保存在Item上的spine初始位置
+                if (this.spineInitialPos) {
+                    this.hero.characterSpine.node.position = this.spineInitialPos.clone();
+                    console.log("[Item stopHeroLogic] 恢复spine到初始位置 - ID:" + this.id + ", x:" + this.spineInitialPos.x + ", y:" + this.spineInitialPos.y);
+                } else if (this.hero.characterSpineInitialPos) {
+                    // 回退方案1：使用Hero保存的character spine初始位置
+                    this.hero.characterSpine.node.position = this.hero.characterSpineInitialPos.clone();
+                    console.log("[Item stopHeroLogic] 使用Hero保存的character spine初始位置:", this.hero.characterSpineInitialPos);
+                } else if (this.hero.itemSpineInitialPos) {
+                    // 回退方案2：使用plant spine的初始位置
+                    this.hero.characterSpine.node.position = this.hero.itemSpineInitialPos.clone();
+                    console.log("[Item stopHeroLogic] 使用plant spine初始位置:", this.hero.itemSpineInitialPos);
+                } else {
+                    // 最后回退：使用(0,0)
+                    this.hero.characterSpine.node.position = cc.Vec2.ZERO;
+                    console.log("[Item stopHeroLogic] spine位置设为(0,0)");
+                }
+                
+                // 确保spine可见
+                this.hero.characterSpine.node.active = true;
+                console.log("[Item stopHeroLogic] spine移回完成，ID:" + this.id);
+            } catch (e) {
+                console.error("[Item stopHeroLogic] 移动spine失败，ID:" + this.id + ", 错误:", e);
+            }
+        } else {
+            console.log("[Item stopHeroLogic] 无法移动spine，ID:" + this.id + 
+                        ", characterSpine:" + !!this.hero.characterSpine + 
+                        ", spine.node:" + !!(this.hero.characterSpine && this.hero.characterSpine.node) +
+                        ", Item.node有效:" + !!(this.node && this.node.isValid));
+        }
+        
+        // 保存Hero节点引用
+        var heroNode = this.hero.node;
+        
+        // 销毁Hero组件
         this.hero.destroy();
         this.hero = null;
+        
+        // 【关键修复】销毁Hero节点
+        if (heroNode && heroNode.isValid) {
+            console.log("[Item stopHeroLogic] 销毁Hero节点，ID:" + this.id);
+            heroNode.destroy();
+        }
     },
     checkToStartReloadTimer: function () {
         if (this.bulletCount <= 0) {

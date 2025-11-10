@@ -46,7 +46,14 @@ cc.Class({
 
     this.itemSpineOriginal = this.item.spine; // 检查原始spine和character spine是否是同一个对象
 
-    var isSameSpine = this.itemSpineOriginal === characterSpine; // 将item.spine指向character spine，这样Item组件能正常工作
+    var isSameSpine = this.itemSpineOriginal === characterSpine; // 【关键】保存character spine在被移动到Hero节点之前，在Item节点下的位置
+    // 这个位置将用于一波结束后恢复spine到正确位置
+
+    if (characterSpine && characterSpine.node && characterSpine.node.parent === e.node) {
+      this.characterSpineInitialPos = characterSpine.node.position.clone();
+      console.log("[Hero] 保存character spine在Item节点下的初始位置:", this.characterSpineInitialPos);
+    } // 将item.spine指向character spine，这样Item组件能正常工作
+
 
     this.item.spine = characterSpine; // 保存item.spine节点的初始位置（如果存在）
 
